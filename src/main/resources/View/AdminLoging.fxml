@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="479.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.maduratailors.Controller.AdminLogingController">
+   <children>
+      <AnchorPane prefHeight="479.0" prefWidth="375.0" style="-fx-background-color: #1e272e;">
+         <children>
+            <ImageView fitHeight="405.0" fitWidth="235.0" layoutX="65.0" layoutY="72.0">
+               <image>
+                  <Image url="@../imgAssets/images/madura1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="88.0" layoutY="-28.0">
+               <image>
+                  <Image url="@../imgAssets/images/moduraTailorsLogo.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="31.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MADURA TAILORS">
+               <font>
+                  <Font name="Poppins Bold" size="36.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="124.0" layoutY="439.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BADURALIYA">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
+      <AnchorPane layoutX="375.0" prefHeight="479.0" prefWidth="405.0">
+         <children>
+            <Text fill="#1e272e" layoutX="114.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
+               <font>
+                  <Font name="Poppins Bold" size="36.0" />
+               </font>
+            </Text>
+            <Text fill="#1e272e" layoutX="144.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Access Your Account">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <JFXTextField fx:id="txtUser" focusColor="#1e272e" layoutX="92.0" layoutY="204.0" prefHeight="26.0" prefWidth="261.0" promptText="Username" />
+            <JFXPasswordField fx:id="txtPwd" focusColor="#1e272e" layoutX="91.0" layoutY="281.0" prefHeight="26.0" prefWidth="262.0" promptText="Password" />
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="52.0" layoutY="215.0">
+               <image>
+                  <Image url="@../imgAssets/icons/icons8-user-30.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="51.0" layoutY="292.0">
+               <image>
+                  <Image url="@../imgAssets/icons/icons8-key-30.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btnLoging" buttonType="RAISED" layoutX="119.0" layoutY="359.0" prefHeight="27.0" prefWidth="176.0" style="-fx-background-color: #1e272e; -fx-background-radius: 15;" text="Loging" textFill="#e8ecec">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.4774268865585327" green="0.7294191122055054" blue="0.821052610874176" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+            </JFXButton>
+            <Text layoutX="91.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forget Password?">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Text>
+            <Text fill="#808486" layoutX="140.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" © KVN SOFTWARE.PVT.LTD">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Text>
+            <ImageView layoutX="177.0" layoutY="116.0">
+               <image>
+                  <Image url="@../imgAssets/icons/icons8-user-account-50.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
