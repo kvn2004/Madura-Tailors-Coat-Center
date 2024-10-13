@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1046.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.maduratailors.Controller.AddEmployeeController">
+   <children>
+      <Pane layoutX="14.0" layoutY="13.0" prefHeight="613.0" prefWidth="411.0" style="-fx-background-color: #7e8a9a;">
+         <children>
+            <Circle fill="#b4bfcb" layoutX="206.0" layoutY="74.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+            <ImageView fx:id="imgEmployee" fitHeight="110.0" fitWidth="110.0" layoutX="152.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgAssets/icons/icons8-person-100.png" />
+               </image></ImageView>
+            <JFXButton fx:id="btnUpload" buttonType="RAISED" layoutX="158.0" layoutY="151.0" onAction="#btnUploadOnAction" prefHeight="25.0" prefWidth="95.0" style="-fx-background-color: #1e272e; -fx-background-image: url('imgAssets/icons/icons8-upload-48.png'); -fx-background-radius: 5;" text="UPLOAD" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></JFXButton>
+            <JFXTextField fx:id="lblID" focusColor="BLACK" layoutX="61.0" layoutY="211.0" prefHeight="25.0" prefWidth="289.0" promptText="ID" unFocusColor="#1e272e">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="lblFname" focusColor="BLACK" layoutX="61.0" layoutY="250.0" prefHeight="25.0" prefWidth="289.0" promptText="First Name" unFocusColor="#1e272e">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="lblMName" focusColor="BLACK" layoutX="62.0" layoutY="289.0" prefHeight="25.0" prefWidth="289.0" promptText="Middle Name" unFocusColor="#1e272e">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="lblLName" focusColor="BLACK" layoutX="61.0" layoutY="329.0" prefHeight="25.0" prefWidth="289.0" promptText="Last Name" unFocusColor="#1e272e">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="lblDOB" focusColor="BLACK" layoutX="62.0" layoutY="369.0" prefHeight="25.0" prefWidth="289.0" promptText="DOB" unFocusColor="#1e272e">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="lblBank" focusColor="BLACK" layoutX="61.0" layoutY="409.0" prefHeight="25.0" prefWidth="289.0" promptText="Bank" unFocusColor="#1e272e">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="btnADD" buttonType="RAISED" layoutX="61.0" layoutY="558.0" onAction="#btnADDOnAction" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #1e272e; -fx-background-radius: 15;" text="ADD" textFill="WHITE">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="164.0" layoutY="558.0" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #1e272e; -fx-background-radius: 15;" text="DELETE" textFill="WHITE">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnUpadate" buttonType="RAISED" layoutX="266.0" layoutY="558.0" onAction="#btnUpadateOnAction" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #1e272e; -fx-background-radius: 15;" text="UPDATE" textFill="WHITE">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXTextField fx:id="lblTelephone" focusColor="BLACK" layoutX="62.0" layoutY="492.0" prefHeight="25.0" prefWidth="289.0" promptText="Telephone" unFocusColor="#1e272e">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="lblAccountNumber" focusColor="BLACK" layoutX="61.0" layoutY="451.0" prefHeight="25.0" prefWidth="289.0" promptText="Account NUMBER" unFocusColor="#1e272e">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+         </children>
+      </Pane>
+      <Pane layoutX="426.0" layoutY="13.0" prefHeight="614.0" prefWidth="620.0">
+         <children>
+            <TableView layoutX="13.0" prefHeight="614.0" prefWidth="597.0" style="-fx-border-color: #1e272e;">
+              <columns>
+                <TableColumn fx:id="cID" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="cFName" prefWidth="112.800048828125" text="FULL NAME" />
+                  <TableColumn fx:id="cDob" prefWidth="84.79998779296875" text="DOB" />
+                  <TableColumn fx:id="cBank" prefWidth="94.4000244140625" text="BANK" />
+                  <TableColumn fx:id="cAccountNumber" prefWidth="90.4000244140625" text="ACCOUNT NUMBER" />
+                  <TableColumn fx:id="cTelephone" prefWidth="95.79998779296875" text="TELEPHONE" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

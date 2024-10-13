@@ -61,7 +61,7 @@
                   <Image url="@../imgAssets/icons/icons8-key-30.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="btnLoging" buttonType="RAISED" layoutX="119.0" layoutY="359.0" prefHeight="27.0" prefWidth="176.0" style="-fx-background-color: #1e272e; -fx-background-radius: 15;" text="Loging" textFill="#e8ecec">
+            <JFXButton fx:id="btnLoging" buttonType="RAISED" layoutX="119.0" layoutY="359.0" onAction="#btnLogingOnAction" prefHeight="27.0" prefWidth="176.0" style="-fx-background-color: #1e272e; -fx-background-radius: 15;" text="Loging" textFill="#e8ecec">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

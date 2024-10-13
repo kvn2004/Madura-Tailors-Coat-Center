@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #1e272e;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.maduratailors.Controller.DashboardController">
+   <children>
+      <AnchorPane prefHeight="720.0" prefWidth="234.0" style="-fx-background-color: #1e272e; -fx-background-radius: 15;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="69.0" layoutX="10.0" layoutY="8.0" opacity="0.49" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="212.0" />
+            <ImageView fitHeight="57.0" fitWidth="71.0" layoutX="7.0" layoutY="12.0">
+               <image>
+                  <Image url="@../imgAssets/images/moduraTailorsLogo%20-2.png" />
+               </image>
+            </ImageView>
+            <Text fill="#e4dede" layoutX="76.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Madura Tailors">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="btnAddEmployee" buttonType="RAISED" layoutX="38.0" layoutY="118.0" onAction="#btnDashboardOnAction" prefHeight="36.0" prefWidth="158.0" style="-fx-background-radius: 5;" text="Dashboard" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <ImageView fx:id="imgDashboard" fitHeight="35.0" fitWidth="35.0" layoutX="38.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgAssets/icons/icons8-dashboard-48.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btnNewOrder" buttonType="RAISED" contentDisplay="CENTER" layoutX="38.0" layoutY="188.0" onAction="#btnbtnNewOrder" prefHeight="36.0" prefWidth="158.0" style="-fx-background-radius: 5;" text="New Order" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </JFXButton>
+            <ImageView fx:id="imgNewOrder" fitHeight="35.0" fitWidth="35.0" layoutX="38.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgAssets/icons/icons8-new-order-30.png" />
+               </image></ImageView>
+            <JFXButton fx:id="btnEmployee" buttonType="RAISED" contentDisplay="CENTER" layoutX="37.0" layoutY="257.0" onAction="#btnEmplyee" prefHeight="36.0" prefWidth="158.0" style="-fx-background-radius: 5;" text="Employee" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </JFXButton>
+            <ImageView fx:id="imgEmployee" fitHeight="35.0" fitWidth="35.0" layoutX="37.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgAssets/icons/icons8-employee-50.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btnCustomer" buttonType="RAISED" contentDisplay="CENTER" layoutX="38.0" layoutY="324.0" onAction="#btnCustomerOnAction" prefHeight="36.0" prefWidth="158.0" style="-fx-background-radius: 5;" text="Customer" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </JFXButton>
+            <ImageView fx:id="imgCustomer" fitHeight="35.0" fitWidth="35.0" layoutX="38.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgAssets/icons/icons8-customers-64.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="233.0" prefHeight="720.0" prefWidth="1046.0" style="-fx-background-color: #FFFFFF;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#353b48" height="63.0" layoutX="13.0" layoutY="7.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1021.0" />
+            <Label fx:id="lblUserName" layoutX="888.0" layoutY="26.0" prefHeight="20.0" prefWidth="118.0" text="Vihanga Nimsara" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Circle fill="#1d1d29" layoutX="804.0" layoutY="36.0" radius="22.0" stroke="WHITE" strokeType="OUTSIDE" />
+            <Label fx:id="lblInterfaceName" layoutX="75.0" layoutY="18.0" text="Analytics" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="ancinterfaces" layoutY="81.0" prefHeight="640.0" prefWidth="1046.0" style="-fx-background-color: #FFFFFF;" />
+            <ImageView fx:id="imgInterfaceImage" fitHeight="35.0" fitWidth="35.0" layoutX="24.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgAssets/icons/icons8-dashboard-48.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblDate" layoutX="489.0" layoutY="26.0" text="2023-7-31" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="837.0" layoutY="26.0" prefHeight="20.0" prefWidth="46.0" text="Hello!" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
