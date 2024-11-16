@@ -203,7 +203,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnSelect" buttonType="RAISED" layoutX="617.0" layoutY="165.0" onAction="#btnSelectOnAction" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #1e272e; -fx-background-radius: 15;" text="SELECT" textFill="WHITE">
+            <JFXButton fx:id="btnSelect" buttonType="RAISED" disable="true" layoutX="617.0" layoutY="165.0" onAction="#btnSelectOnAction" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #1e272e; -fx-background-radius: 15;" text="SELECT" textFill="WHITE">
                <font>
                   <Font name="Leelawadee UI Bold" size="12.0" />
                </font>

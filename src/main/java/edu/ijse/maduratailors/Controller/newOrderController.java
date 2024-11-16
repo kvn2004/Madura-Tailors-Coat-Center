@@ -5,12 +5,18 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 import edu.ijse.maduratailors.DTO.CustomerMesurementDTO;
+import edu.ijse.maduratailors.Model.CustomerModel;
+import edu.ijse.maduratailors.Model.NewOrderModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -21,18 +27,31 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class newOrderController implements Initializable {
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tglBtnPurchase.setSelected(true);
         if (tglBtnPurchase.isSelected()) {
             ancRentalInfo.setDisable(true);
         }
-        receiveCustomerMesurementDTO("HELLO");
+        loadCustomerId();
 
     }
+
+    @FXML
+    private JFXButton btnUpdate;
+    @FXML
+    private ImageView imgSearch;
+    @FXML
+    private JFXComboBox<String> cBCustomerID;
 
     @FXML
     private AnchorPane ancNewOrder;
@@ -236,9 +255,6 @@ public class newOrderController implements Initializable {
     private JFXTextField txtWaist2;
 
     @FXML
-    private JFXTextField newTxt;
-
-    @FXML
     void btnRecipt(ActionEvent event) {
 
     }
@@ -269,34 +285,97 @@ public class newOrderController implements Initializable {
         }
     }
 
+    void loadCustomerId() {
+        try {
+            ArrayList<String> list = NewOrderModel.getID();
+            ObservableList<String> objects = FXCollections.observableArrayList();
+            objects.addAll(list);
+            cBCustomerID.setItems(objects);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            System.err.println("e");
+        }
+    }
 
-    public void receiveCustomerMesurementDTO(String name) {
+    public void imgSearchClicked(MouseEvent mouseEvent) {
+        int id = Integer.parseInt(cBCustomerID.getValue());
+        try {
+            ArrayList<CustomerMesurementDTO> Cm = NewOrderModel.getCustomerMeasurement(id);
+            for (CustomerMesurementDTO cm : Cm) {
+                txtCustomerName.setText(cm.getName());
+                txtCustomerContact.setText(cm.getTelephone());
+                txtCustomerAddress.setText(cm.getAddress());
+                txtNeck.setText(String.valueOf(cm.getNeck()));
+                txtHip.setText(String.valueOf(cm.getHip()));
+                txtInseam.setText(String.valueOf(cm.getInseam()));
+                txtOutseam.setText(String.valueOf(cm.getOutseam()));
+                txtChest.setText(String.valueOf(cm.getChest()));
+                txtShirtLength.setText(String.valueOf(cm.getShirt()));
+                txtSleeveLength.setText(String.valueOf(cm.getSleeve()));
+                txtThigh.setText(String.valueOf(cm.getThigh()));
+                txtShoulder.setText(String.valueOf(cm.getShoulder()));
+                txtWaist.setText(String.valueOf(cm.getWaist()));
+                txtWaist2.setText(String.valueOf(cm.getWaist()));
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void btnUpdate(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> optType = alert.showAndWait();
+        if (optType.get() == ButtonType.YES) {
+            int id = Integer.parseInt(cBCustomerID.getValue());
+            int mId = 0;
+            String name = txtCustomerName.getText();
+            String address = txtCustomerAddress.getText();
+            String telephone = txtCustomerContact.getText();
+            double neck = Double.parseDouble(txtNeck.getText());
+            double Shoulder = Double.parseDouble(txtShoulder.getText());
+            double Chest = Double.parseDouble(txtChest.getText());
+            double waist = Double.parseDouble(txtWaist.getText());
+            waist = Double.parseDouble(txtWaist2.getText());
+            double hip = Double.parseDouble(txtHip.getText());
+            double sleeveLength = Double.parseDouble(txtSleeveLength.getText());
+            double shirtLength = Double.parseDouble(txtSleeveLength.getText());
+            double thigh = Double.parseDouble(txtThigh.getText());
+            double outseame = Double.parseDouble(txtOutseam.getText());
+            double inseam = Double.parseDouble(txtInseam.getText());
+            CustomerMesurementDTO customerMesurementDTO = new CustomerMesurementDTO(id, mId, name, address, telephone, neck, Shoulder, Chest, waist, hip, sleeveLength, shirtLength, thigh, outseame, inseam);
+            boolean isUpdated = NewOrderModel.upadte(customerMesurementDTO);
+            if (isUpdated) {
+
+                new Alert(Alert.AlertType.INFORMATION, "Customer update...!").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Fail to update ...!").show();
+            }
+        }
+    }
+//    public void receiveCustomerMesurementDTO(CustomerMesurementDTO customerMesurementDTO) {
 //        try {
 //            System.out.println("-----------------------------------------");
-//            System.out.println("awaaaaaa  -"+customerMesurementDTO);
+//            System.out.println("awaaaaaa  -" + customerMesurementDTO);
 //            System.out.println("-----------------------------------------");
 //            System.out.println(customerMesurementDTO.getCustomerId());
 //            String name = customerMesurementDTO.getName();
 //
 //            System.out.println(name);
-
+//            newTxt.setText(customerMesurementDTO.getName());
+//            lblOrderDate.setText(customerMesurementDTO.getName());
 //            if (name != null) {
 //
 //                System.out.println("Text set successfully.");  // Debug statement
 //            } else {
 //                System.err.println("txtCustomerName is null");  // Debug statement
 //            }
-
-//        }catch (Exception e) {
+//
+//        } catch (Exception e) {
 //            e.printStackTrace();
-//            System.out.println("ERROR "+e.getMessage());
+//            System.out.println("ERROR " + e.getMessage());
 //        }
-
-        setTextValue(name);
-    }
-
-    private void setTextValue(String name) {
-        System.out.println(name);
-        newTxt.setText(name);
-    }
+//
+//
+//    }
 }

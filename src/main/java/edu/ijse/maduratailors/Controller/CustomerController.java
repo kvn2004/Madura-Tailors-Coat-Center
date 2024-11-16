@@ -229,9 +229,6 @@ public class CustomerController implements Initializable {
     @FXML
     private JFXTextField txtWaist2;
 
-    private CustomerDTO customerDTO = new CustomerDTO();
-    @Setter
-    private newOrderController newOrderController = new newOrderController();
 
     @FXML
     void btnADDOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
@@ -424,54 +421,49 @@ public class CustomerController implements Initializable {
     }
 
 
-    public void btnSelectOnAction(ActionEvent actionEvent) {
-        try {
+  public void btnSelectOnAction(ActionEvent actionEvent) {
+//        try {
+//
+//            String idText = txtID.getText();
+//            if (idText.isEmpty()) {
+//                throw new NumberFormatException("ID field is empty");
+//            }
+//            int id = Integer.parseInt(idText);
+//
+//            int mId = tblCustomerMesurement.getSelectionModel().getSelectedItem().getCustomerId();
+//
+//
+//            String name = txtFname.getText();
+//            String address = txtAddress.getText();
+//            String telephone = txtTelephone.getText();
+//
+//
+//            double neck = parseDoubleWithValidation(txtNeck.getText(), "Neck");
+//            double shoulder = parseDoubleWithValidation(txtShoulder.getText(), "Shoulder");
+//            double chest = parseDoubleWithValidation(txtChest.getText(), "Chest");
+//            double waist = parseDoubleWithValidation(txtWaist.getText(), "Waist");
+//            double waist2 = parseDoubleWithValidation(txtWaist2.getText(), "Waist2");
+//            double hip = parseDoubleWithValidation(txtHip.getText(), "Hip");
+//            double sleeveLength = parseDoubleWithValidation(txtSleeveLength.getText(), "Sleeve Length");
+//            double shirtLength = parseDoubleWithValidation(txtSleeveLength.getText(), "Shirt Length");
+//            double thigh = parseDoubleWithValidation(txtThigh.getText(), "Thigh");
+//            double outseam = parseDoubleWithValidation(txtOutseam.getText(), "Outseam");
+//            double inseam = parseDoubleWithValidation(txtInseam.getText(), "Inseam");
+//
+//            CustomerMesurementDTO customerMesurementDTO = new CustomerMesurementDTO(id, mId, name, address, telephone, neck, shoulder, chest, waist, hip, sleeveLength, shirtLength, thigh, outseam, inseam);
+//            System.out.println(customerMesurementDTO);
+//
+//
+//            if (newOrderController != null) {
+//                newOrderController.receiveCustomerMesurementDTO(customerMesurementDTO);
+//            }
+//        } catch (NumberFormatException e) {
+//            System.err.println("Invalid input: " + e.getMessage());
+//
+//        }
+   }
 
-            String idText = txtID.getText();
-            if (idText.isEmpty()) {
-                throw new NumberFormatException("ID field is empty");
-            }
-            int id = Integer.parseInt(idText);
 
-            int mId = tblCustomerMesurement.getSelectionModel().getSelectedItem().getCustomerId();
-
-
-            String name = txtFname.getText();
-            String address = txtAddress.getText();
-            String telephone = txtTelephone.getText();
-
-
-            double neck = parseDoubleWithValidation(txtNeck.getText(), "Neck");
-            double shoulder = parseDoubleWithValidation(txtShoulder.getText(), "Shoulder");
-            double chest = parseDoubleWithValidation(txtChest.getText(), "Chest");
-            double waist = parseDoubleWithValidation(txtWaist.getText(), "Waist");
-            double waist2 = parseDoubleWithValidation(txtWaist2.getText(), "Waist2");
-            double hip = parseDoubleWithValidation(txtHip.getText(), "Hip");
-            double sleeveLength = parseDoubleWithValidation(txtSleeveLength.getText(), "Sleeve Length");
-            double shirtLength = parseDoubleWithValidation(txtSleeveLength.getText(), "Shirt Length");
-            double thigh = parseDoubleWithValidation(txtThigh.getText(), "Thigh");
-            double outseam = parseDoubleWithValidation(txtOutseam.getText(), "Outseam");
-            double inseam = parseDoubleWithValidation(txtInseam.getText(), "Inseam");
-
-            CustomerMesurementDTO customerMesurementDTO = new CustomerMesurementDTO(id, mId, name, address, telephone, neck, shoulder, chest, waist, hip, sleeveLength, shirtLength, thigh, outseam, inseam);
-            System.out.println(customerMesurementDTO);
-
-
-            if (newOrderController != null) {
-                newOrderController.receiveCustomerMesurementDTO("HELLO");
-            }
-        } catch (NumberFormatException e) {
-            System.err.println("Invalid input: " + e.getMessage());
-
-        }
-    }
-
-    private double parseDoubleWithValidation(String text, String fieldName) {
-        if (text.isEmpty()) {
-            throw new NumberFormatException(fieldName + " field is empty");
-        }
-        return Double.parseDouble(text);
-    }
 }
 
 

@@ -29,12 +29,6 @@
             <Font name="Leelawadee UI Bold" size="15.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtCustomerID" focusColor="BLACK" layoutX="149.0" layoutY="75.0" prefHeight="26.0" prefWidth="236.0" unFocusColor="#1e272e" />
-      <ImageView fx:id="imgCustomrSearch" fitHeight="20.0" fitWidth="20.0" layoutX="363.0" layoutY="81.0" onMouseClicked="#imgSearchOnMouseClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../imgAssets/icons/icons8-search-64.png" />
-         </image>
-      </ImageView>
       <AnchorPane layoutX="448.0" layoutY="18.0" prefHeight="383.0" prefWidth="582.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d7dadc" height="383.0" layoutX="448.0" layoutY="20.0" stroke="TRANSPARENT" strokeType="INSIDE" width="582.0" />
       <Label layoutX="464.0" layoutY="76.0" text="Name" textFill="#1e272e">
@@ -150,7 +144,7 @@
          </font>
       </Label>
       <DatePicker fx:id="dpDueDate" layoutX="142.0" layoutY="227.0" prefHeight="26.0" prefWidth="175.0" style="-fx-primary-color: #4d4dff; -fx-background-size: 0; -fx-border-radius: 0; -fx-border-width: 0;" />
-      <JFXButton fx:id="btnRecipt1" buttonType="RAISED" layoutX="905.0" layoutY="366.0" onAction="#btnRecipt" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #1e272e; -fx-background-radius: 15;" text="Update" textFill="WHITE">
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="905.0" layoutY="366.0" onAction="#btnUpdate" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #1e272e; -fx-background-radius: 15;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -330,6 +324,11 @@
             </Label>
          </children>
       </Pane>
-      <JFXTextField fx:id="newTxt" layoutX="153.0" layoutY="14.0" />
+      <JFXComboBox fx:id="cBCustomerID" focusColor="BLACK" layoutX="152.0" layoutY="82.0" prefHeight="26.0" prefWidth="175.0" unFocusColor="#1e272e" />
+      <ImageView fx:id="imgSearch" fitHeight="25.0" fitWidth="25.0" layoutX="334.0" layoutY="86.0" onMouseClicked="#imgSearchClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imgAssets/icons/icons8-search-64.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
