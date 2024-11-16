@@ -7,11 +7,10 @@
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -25,7 +24,7 @@
          </font>
       </Label>
       <JFXTextField fx:id="txtOrderID" focusColor="BLACK" layoutX="149.0" layoutY="27.0" prefHeight="26.0" prefWidth="236.0" unFocusColor="#1e272e" />
-      <Label fx:id="lblCustomerID" layoutX="40.0" layoutY="88.0" text="Customer ID" textFill="#1e272e">
+      <Label  layoutX="40.0" layoutY="88.0" text="Customer ID" textFill="#1e272e">
          <font>
             <Font name="Leelawadee UI Bold" size="15.0" />
          </font>
@@ -38,7 +37,7 @@
       </ImageView>
       <AnchorPane layoutX="448.0" layoutY="18.0" prefHeight="383.0" prefWidth="582.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d7dadc" height="383.0" layoutX="448.0" layoutY="20.0" stroke="TRANSPARENT" strokeType="INSIDE" width="582.0" />
-      <Label fx:id="lblCustomerName" layoutX="464.0" layoutY="76.0" text="Name" textFill="#1e272e">
+      <Label  layoutX="464.0" layoutY="76.0" text="Name" textFill="#1e272e">
          <font>
             <Font name="Leelawadee UI Bold" size="15.0" />
          </font>
@@ -66,12 +65,12 @@
             <Font name="Leelawadee UI Bold" size="15.0" />
          </font>
       </Label>
-      <JFXToggleButton fx:id="tglBtnPurchase" layoutX="143.0" layoutY="118.0" onAction="#tglBtnPurchaseOnAction" text="Purchase" textFill="#1e272e" toggleColor="WHITE" toggleLineColor="#1e272e">
+      <JFXToggleButton fx:id="tglBtnPurchase" layoutX="143.0" layoutY="118.0" onAction="#tglBtnOnAction" text="Purchase" textFill="#1e272e" toggleColor="WHITE" toggleLineColor="#1e272e">
          <font>
             <Font name="Leelawadee UI Bold" size="12.0" />
          </font>
       </JFXToggleButton>
-      <JFXToggleButton fx:id="tglBtnRent" layoutX="286.0" layoutY="118.0" onAction="#tglBtnRentOnAction" text="Rent" textFill="#1e272e" toggleColor="WHITE" toggleLineColor="#1e272e">
+      <JFXToggleButton fx:id="tglBtnRent" layoutX="286.0" layoutY="118.0" onAction="#tglBtnOnAction" text="Rent" textFill="#1e272e" toggleColor="WHITE" toggleLineColor="#1e272e">
          <font>
             <Font name="Leelawadee UI Bold" size="12.0" />
          </font>
@@ -174,29 +173,9 @@
          </font>
       </Label>
       <JFXTextField fx:id="txtQTY" focusColor="BLACK" layoutX="141.0" layoutY="361.0" prefHeight="26.0" prefWidth="88.0" unFocusColor="#1e272e" />
-      <TableView layoutX="449.0" layoutY="204.0" prefHeight="74.0" prefWidth="582.0">
-        <columns>
-          <TableColumn text="C1" />
-          <TableColumn prefWidth="76.79998779296875" text="C2" />
-            <TableColumn minWidth="8.00006103515625" prefWidth="104.79998779296875" text="Column X" />
-            <TableColumn minWidth="0.0" prefWidth="102.39996337890625" text="Column X" />
-            <TableColumn minWidth="0.0" prefWidth="108.800048828125" text="Column X" />
-            <TableColumn prefWidth="109.59979248046875" text="Column X" />
-        </columns>
-      </TableView>
-      <TableView layoutX="448.0" layoutY="287.0" prefHeight="74.0" prefWidth="582.0">
-        <columns>
-            <TableColumn prefWidth="78.39996337890625" text="C1" />
-            <TableColumn prefWidth="83.2000732421875" text="C2" />
-            <TableColumn prefWidth="104.79998779296875" text="Column X" />
-            <TableColumn prefWidth="101.60003662109375" text="Column X" />
-            <TableColumn minWidth="3.20001220703125" prefWidth="111.199951171875" text="Column X" />
-            <TableColumn prefWidth="103.99993896484375" text="Column X" />
-        </columns>
-      </TableView>
       <AnchorPane layoutX="15.0" layoutY="411.0" prefHeight="206.0" prefWidth="410.0" style="-fx-background-color: #d7dadc; -fx-background-radius: 2;">
          <children>
-            <Label fx:id="lblTotal" layoutX="25.0" layoutY="70.0" text="Total" textFill="#1e272e">
+            <Label  layoutX="25.0" layoutY="70.0" text="Total" textFill="#1e272e">
                <font>
                   <Font name="Leelawadee UI Bold" size="15.0" />
                </font>
@@ -227,5 +206,129 @@
             </JFXButton>
          </children>
       </AnchorPane>
+      <Pane layoutX="448.0" layoutY="197.0" prefHeight="157.0" prefWidth="582.0">
+         <children>
+            <JFXTextField fx:id="txtNeck" focusColor="BLACK" layoutX="85.0" layoutY="30.0" prefHeight="25.0" prefWidth="60.0" promptText="Neck" unFocusColor="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtChest" focusColor="BLACK" layoutX="157.0" layoutY="30.0" prefHeight="25.0" prefWidth="60.0" promptText="Chest" unFocusColor="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtWaist" focusColor="BLACK" layoutX="229.0" layoutY="30.0" prefHeight="25.0" prefWidth="60.0" promptText="Waist" unFocusColor="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtSleeveLength" focusColor="BLACK" layoutX="302.0" layoutY="30.0" prefHeight="25.0" prefWidth="60.0" promptText="Sleeve Length" unFocusColor="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtShirtLength" focusColor="BLACK" layoutX="373.0" layoutY="31.0" prefHeight="25.0" prefWidth="60.0" promptText="Shirt Length" unFocusColor="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtShoulder" focusColor="BLACK" layoutX="445.0" layoutY="32.0" prefHeight="25.0" prefWidth="60.0" promptText="Shoulder " unFocusColor="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtWaist2" focusColor="BLACK" layoutX="85.0" layoutY="102.0" prefHeight="25.0" prefWidth="60.0" promptText="Waist" unFocusColor="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtHip" focusColor="BLACK" layoutX="157.0" layoutY="102.0" prefHeight="25.0" prefWidth="60.0" promptText="Hip" unFocusColor="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtInseam" focusColor="BLACK" layoutX="229.0" layoutY="102.0" prefHeight="25.0" prefWidth="60.0" promptText="Inseam" unFocusColor="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtOutseam" focusColor="BLACK" layoutX="302.0" layoutY="102.0" prefHeight="25.0" prefWidth="60.0" promptText="Outseam" unFocusColor="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtThigh" focusColor="BLACK" layoutX="373.0" layoutY="103.0" prefHeight="25.0" prefWidth="60.0" promptText="Thigh" unFocusColor="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgAssets/icons/icons8-shirt-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgAssets/icons/icons8-trousers-64.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbl5" layoutX="85.0" layoutY="12.0" text="Neck">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl6" layoutX="157.0" layoutY="12.0" text="Chest">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl7" layoutX="229.0" layoutY="12.0" text="Waist">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl8" layoutX="302.0" layoutY="11.0" text="Shirt L">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl9" layoutX="373.0" layoutY="12.0" text="Sleeve L">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl10" layoutX="445.0" layoutY="12.0" text="Shoulder">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl11" layoutX="83.0" layoutY="78.0" text="Waist">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl12" layoutX="156.0" layoutY="79.0" text="Hip">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl13" layoutX="229.0" layoutY="77.0" text="Inseam">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl14" layoutX="300.0" layoutY="77.0" text="Outseam">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl15" layoutX="376.0" layoutY="79.0" text="Thigh">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

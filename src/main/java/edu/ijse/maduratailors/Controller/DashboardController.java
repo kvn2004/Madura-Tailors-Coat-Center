@@ -8,11 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
@@ -22,6 +20,8 @@ public class DashboardController implements Initializable {
     public JFXButton btnEmployee;
     public JFXButton btnCustomer;
     public ImageView imgCustomer;
+    public JFXButton btnPayment;
+    public ImageView imgPayment;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -43,7 +43,7 @@ public class DashboardController implements Initializable {
         lblInterfaceName.setText(btnAddEmployee.getText());
         imgInterfaceImage.setImage(imgDashboard.getImage());
         ancinterfaces.getChildren().clear();
-        AnchorPane anchorPane =FXMLLoader.load(getClass().getResource("/View/DashbordPanel.fxml"));
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/View/DashbordPanel.fxml"));
         ancinterfaces.getChildren().add(anchorPane);
     }
 
@@ -51,8 +51,8 @@ public class DashboardController implements Initializable {
         lblInterfaceName.setText(btnNewOrder.getText());
         imgInterfaceImage.setImage(imgNewOrder.getImage());
         ancinterfaces.getChildren().clear();
-      AnchorPane anchorPane =FXMLLoader.load(getClass().getResource("/View/NewOrder.fxml"));
-      ancinterfaces.getChildren().add(anchorPane);
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/View/NewOrder.fxml"));
+        ancinterfaces.getChildren().add(anchorPane);
     }
 
     public void btnEmplyee(ActionEvent actionEvent) throws IOException {
@@ -69,5 +69,14 @@ public class DashboardController implements Initializable {
         ancinterfaces.getChildren().clear();
         AnchorPane load = FXMLLoader.load(getClass().getResource("/View/Customer.fxml"));
         ancinterfaces.getChildren().add(load);
+    }
+
+    public void btnPaymentOnAction(ActionEvent actionEvent) throws IOException {
+        lblInterfaceName.setText(btnPayment.getText());
+        imgInterfaceImage.setImage(imgPayment.getImage());
+        ancinterfaces.getChildren().clear();
+        AnchorPane load = FXMLLoader.load(getClass().getResource("/View/Payements.fxml"));
+        ancinterfaces.getChildren().add(load);
+
     }
 }

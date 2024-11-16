@@ -2,115 +2,15 @@
 
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane prefHeight="640.0" prefWidth="1046.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.maduratailors.Controller.DashBoardPanelController">
    <children>
-      <Pane layoutX="5.0" layoutY="108.0" prefHeight="200.0" prefWidth="344.0">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="344.0">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.8299999833106995" green="0.08299999684095383" blue="0.08299999684095383" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </fill>
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect>
-            </Rectangle>
-         </children>
-      </Pane>
-      <Pane layoutX="356.0" layoutY="108.0" prefHeight="200.0" prefWidth="344.0" style="-fx-background-color: #000000;">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="344.0">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.3686274588108063" green="0.40392157435417175" blue="0.4313725531101227" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </fill>
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect>
-            </Rectangle>
-         </children>
-      </Pane>
-      <Pane layoutX="707.0" layoutY="108.0" prefHeight="200.0" prefWidth="344.0" style="-fx-background-color: #000000;">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="344.0">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.3686274588108063" green="0.40392157435417175" blue="0.4313725531101227" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </fill>
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect>
-            </Rectangle>
-         </children>
-      </Pane>
-      <TableView layoutX="14.0" layoutY="369.0" prefHeight="260.0" prefWidth="1026.0">
+      <Pane layoutX="24.0" layoutY="14.0" prefHeight="190.0" prefWidth="330.0" style="-fx-background-color: #1e272e; -fx-background-radius: 10;" />
+      <Pane layoutX="364.0" layoutY="14.0" prefHeight="190.0" prefWidth="330.0" style="-fx-background-color: #1e272e; -fx-background-radius: 10;" />
+      <Pane layoutX="705.0" layoutY="14.0" prefHeight="190.0" prefWidth="330.0" style="-fx-background-color: #1e272e; -fx-background-radius: 10;" />
+      <TableView layoutX="14.0" layoutY="369.0" prefHeight="260.0" prefWidth="1026.0" style="-fx-border-color: #1e272e;">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />

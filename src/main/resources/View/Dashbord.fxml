@@ -111,6 +111,29 @@
                   <Image url="@../imgAssets/icons/icons8-customers-64.png" />
                </image>
             </ImageView>
+            <JFXButton fx:id="btnPayment" buttonType="RAISED" contentDisplay="CENTER" layoutX="37.0" layoutY="386.0" onAction="#btnPaymentOnAction" prefHeight="36.0" prefWidth="158.0" style="-fx-background-radius: 5;" text="Payment" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </JFXButton>
+            <ImageView fx:id="imgPayment" fitHeight="35.0" fitWidth="35.0" layoutX="37.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgAssets/icons/icons8-payment-history-50.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="233.0" prefHeight="720.0" prefWidth="1046.0" style="-fx-background-color: #FFFFFF;">
