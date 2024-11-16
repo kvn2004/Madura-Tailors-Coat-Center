@@ -30,6 +30,7 @@ public class newOrderController implements Initializable {
         if (tglBtnPurchase.isSelected()) {
             ancRentalInfo.setDisable(true);
         }
+        receiveCustomerMesurementDTO("HELLO");
 
     }
 
@@ -175,7 +176,7 @@ public class newOrderController implements Initializable {
     private JFXTextField txtCustomerID;
 
     @FXML
-    private JFXTextField txtCustomerName;
+    public JFXTextField txtCustomerName;
 
     @FXML
     private JFXTextField txtDiscount;
@@ -235,6 +236,9 @@ public class newOrderController implements Initializable {
     private JFXTextField txtWaist2;
 
     @FXML
+    private JFXTextField newTxt;
+
+    @FXML
     void btnRecipt(ActionEvent event) {
 
     }
@@ -266,19 +270,33 @@ public class newOrderController implements Initializable {
     }
 
 
-    public void receiveCustomerMesurementDTO(CustomerMesurementDTO customerMesurementDTO) {
-        try {
-            System.out.println("-----------------------------------------");
-            System.out.println("awaaaaaa  -"+customerMesurementDTO);
-            System.out.println("-----------------------------------------");
-            String name = customerMesurementDTO.getName();
-            txtCustomerName.setText(name);
+    public void receiveCustomerMesurementDTO(String name) {
+//        try {
+//            System.out.println("-----------------------------------------");
+//            System.out.println("awaaaaaa  -"+customerMesurementDTO);
+//            System.out.println("-----------------------------------------");
+//            System.out.println(customerMesurementDTO.getCustomerId());
+//            String name = customerMesurementDTO.getName();
+//
+//            System.out.println(name);
 
-        }catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("ERROR "+e.getMessage());
-        }
+//            if (name != null) {
+//
+//                System.out.println("Text set successfully.");  // Debug statement
+//            } else {
+//                System.err.println("txtCustomerName is null");  // Debug statement
+//            }
 
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//            System.out.println("ERROR "+e.getMessage());
+//        }
 
+        setTextValue(name);
+    }
+
+    private void setTextValue(String name) {
+        System.out.println(name);
+        newTxt.setText(name);
     }
 }

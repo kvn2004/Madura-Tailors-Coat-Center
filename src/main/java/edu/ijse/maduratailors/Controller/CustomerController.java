@@ -82,6 +82,12 @@ public class CustomerController implements Initializable {
         }
     }
 
+//    private newOrderController newOrderController;
+
+
+    @Setter
+    private newOrderController orderFormController;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ColMeasurementID.setCellValueFactory(new PropertyValueFactory<>("MeasurementId"));
@@ -452,7 +458,7 @@ public class CustomerController implements Initializable {
 
 
             if (newOrderController != null) {
-                newOrderController.receiveCustomerMesurementDTO(customerMesurementDTO);
+                newOrderController.receiveCustomerMesurementDTO("HELLO");
             }
         } catch (NumberFormatException e) {
             System.err.println("Invalid input: " + e.getMessage());

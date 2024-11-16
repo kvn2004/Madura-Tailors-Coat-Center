@@ -139,10 +139,9 @@ public class AddEmployeeController implements Initializable {
             String accountNumberPattern = "^[0-9]+$";
 
 
-            boolean isValidFName =fName.matches(fNamePattern);
-            boolean isValidMName =mName.matches(mNamePattern);
-            boolean isValidLName =lName.matches(lNamePattern);
-
+            boolean isValidFName = fName.matches(fNamePattern);
+            boolean isValidMName = mName.matches(mNamePattern);
+            boolean isValidLName = lName.matches(lNamePattern);
 
 
             if (!isValidFName) {
@@ -151,12 +150,15 @@ public class AddEmployeeController implements Initializable {
 
             EmplyeeDTO emplyeeDTO = new EmplyeeDTO(id, fName, mName, lName, dob, bank, accountNumber, phone);
             boolean isSaved = EmployeeModel.AddEmployee(emplyeeDTO);
+
+
             if (isSaved) {
                 new Alert(Alert.AlertType.INFORMATION, "Employee saved...!").show();
                 refreshTblEmployee();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Fail to save Employee...!").show();
             }
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -210,7 +212,7 @@ public class AddEmployeeController implements Initializable {
                     refreshTblEmployee();
                     clear();
                     new Alert(Alert.AlertType.INFORMATION, "Employee updated...!").show();
-                }else {
+                } else {
                     try {
                         new Alert(Alert.AlertType.ERROR, "Fail to update Employee...!").show();
                     } catch (Exception e) {

@@ -24,7 +24,7 @@
          </font>
       </Label>
       <JFXTextField fx:id="txtOrderID" focusColor="BLACK" layoutX="149.0" layoutY="27.0" prefHeight="26.0" prefWidth="236.0" unFocusColor="#1e272e" />
-      <Label  layoutX="40.0" layoutY="88.0" text="Customer ID" textFill="#1e272e">
+      <Label layoutX="40.0" layoutY="88.0" text="Customer ID" textFill="#1e272e">
          <font>
             <Font name="Leelawadee UI Bold" size="15.0" />
          </font>
@@ -37,7 +37,7 @@
       </ImageView>
       <AnchorPane layoutX="448.0" layoutY="18.0" prefHeight="383.0" prefWidth="582.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d7dadc" height="383.0" layoutX="448.0" layoutY="20.0" stroke="TRANSPARENT" strokeType="INSIDE" width="582.0" />
-      <Label  layoutX="464.0" layoutY="76.0" text="Name" textFill="#1e272e">
+      <Label layoutX="464.0" layoutY="76.0" text="Name" textFill="#1e272e">
          <font>
             <Font name="Leelawadee UI Bold" size="15.0" />
          </font>
@@ -175,7 +175,7 @@
       <JFXTextField fx:id="txtQTY" focusColor="BLACK" layoutX="141.0" layoutY="361.0" prefHeight="26.0" prefWidth="88.0" unFocusColor="#1e272e" />
       <AnchorPane layoutX="15.0" layoutY="411.0" prefHeight="206.0" prefWidth="410.0" style="-fx-background-color: #d7dadc; -fx-background-radius: 2;">
          <children>
-            <Label  layoutX="25.0" layoutY="70.0" text="Total" textFill="#1e272e">
+            <Label layoutX="25.0" layoutY="70.0" text="Total" textFill="#1e272e">
                <font>
                   <Font name="Leelawadee UI Bold" size="15.0" />
                </font>
@@ -330,5 +330,6 @@
             </Label>
          </children>
       </Pane>
+      <JFXTextField fx:id="newTxt" layoutX="153.0" layoutY="14.0" />
    </children>
 </AnchorPane>
