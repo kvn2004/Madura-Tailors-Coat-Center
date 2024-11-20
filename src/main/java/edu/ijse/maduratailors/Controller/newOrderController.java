@@ -1,10 +1,10 @@
 package edu.ijse.maduratailors.Controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXToggleButton;
+import com.jfoenix.controls.*;
 import edu.ijse.maduratailors.DTO.CustomerMesurementDTO;
+import edu.ijse.maduratailors.DTO.OrderPaymentDTO;
+import edu.ijse.maduratailors.DTO.ProductDTO;
+import edu.ijse.maduratailors.Enum.Design;
 import edu.ijse.maduratailors.Model.CustomerModel;
 import edu.ijse.maduratailors.Model.NewOrderModel;
 import javafx.collections.FXCollections;
@@ -36,6 +36,8 @@ import java.util.ResourceBundle;
 public class newOrderController implements Initializable {
 
 
+    public JFXButton btnCal;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tglBtnPurchase.setSelected(true);
@@ -43,16 +45,28 @@ public class newOrderController implements Initializable {
             ancRentalInfo.setDisable(true);
         }
         loadCustomerId();
+        loadItemId();
+        cBDesign.getItems().addAll(Design.values());
+
 
     }
 
+    @FXML
+    private JFXCheckBox cbCash;
+    @FXML
+    private JFXCheckBox CbCard;
+    @FXML
+    private ImageView imgSearchItem;
+    @FXML
+    private JFXButton btnPay;
     @FXML
     private JFXButton btnUpdate;
     @FXML
     private ImageView imgSearch;
     @FXML
     private JFXComboBox<String> cBCustomerID;
-
+    @FXML
+    private JFXComboBox<String> cBItemID;
     @FXML
     private AnchorPane ancNewOrder;
 
@@ -69,7 +83,7 @@ public class newOrderController implements Initializable {
     private JFXButton btnRecipt2;
 
     @FXML
-    private JFXComboBox<?> cBDesign;
+    private JFXComboBox<Design> cBDesign;
 
     @FXML
     private DatePicker dpDueDate;
@@ -297,6 +311,18 @@ public class newOrderController implements Initializable {
         }
     }
 
+    void loadItemId() {
+        try {
+            ArrayList<String> list = NewOrderModel.getItemID();
+            ObservableList<String> objects = FXCollections.observableArrayList();
+            objects.addAll(list);
+            cBItemID.setItems(objects);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            System.err.println("e");
+        }
+    }
+
     public void imgSearchClicked(MouseEvent mouseEvent) {
         int id = Integer.parseInt(cBCustomerID.getValue());
         try {
@@ -352,6 +378,76 @@ public class newOrderController implements Initializable {
                 new Alert(Alert.AlertType.ERROR, "Fail to update ...!").show();
             }
         }
+    }
+
+    public void btnPay(ActionEvent actionEvent) {
+        int cID = Integer.parseInt(cBCustomerID.getValue());
+        String type;
+        if (tglBtnPurchase.isSelected()) {
+            type = "Purchase";
+        } else {
+            type = "Rent";
+        }
+        String orderDate = dpOrderDate.getValue().toString();
+        String dueDate = dpDueDate.getValue().toString();
+        String design = cBDesign.getValue().toString();
+        double price = Double.parseDouble(txtPrice.getText());
+        int qty = Integer.parseInt(txtQTY.getText());
+        int itemId = 0;
+        itemId = Integer.parseInt(cBItemID.getValue());
+        String paymentMethod = "Cash";
+        /////////////////////
+        if (cbCash.isSelected()) {
+            paymentMethod = "Cash";
+            CbCard.setSelected(false);
+        }
+        if (CbCard.isSelected()) {
+            paymentMethod = "Card";
+            cbCash.setSelected(false);
+        }
+        /////////////////////
+        String Status = "Pending";
+        ///////
+        if (txtTotal.getText().equals(txtAdvance.getText())) {
+            Status = "Completed";
+        } else {
+            Status = "Pending";
+        }
+        //////
+        double amount = Double.parseDouble(txtAdvance.getText());
+        String paymentDate = orderDate;
+        OrderPaymentDTO orderPaymentDTO = new OrderPaymentDTO(cID, type, orderDate, dueDate, design, price, qty, itemId, paymentMethod, paymentDate, amount, Status);
+        boolean isSuccesfull = NewOrderModel.pay(orderPaymentDTO);
+        if (isSuccesfull) {
+            new Alert(Alert.AlertType.INFORMATION, "Order Placed...!").show();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Fail to Order Placed!!").show();
+        }
+
+
+    }
+
+    public void imgSearchItem(MouseEvent mouseEvent) {
+        int id = Integer.parseInt(cBItemID.getValue());
+        System.out.println(id);
+        try {
+            ArrayList<ProductDTO> productDTOS = NewOrderModel.getItemDetails(id);
+            for (ProductDTO productDTO : productDTOS) {
+                txtItemPrice.setText(String.valueOf(productDTO.getPrice()));
+                txtItemType.setText(productDTO.getCatogory());
+            }
+            txtPrice.setText(txtItemPrice.getText());
+            txtQTY.setText("1");
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void btnCalONAction(ActionEvent actionEvent) {
+        double tot = Double.parseDouble(txtPrice.getText());
+        int qty = Integer.parseInt(txtQTY.getText());
+        txtTotal.setText(String.valueOf(tot * qty));
     }
 //    public void receiveCustomerMesurementDTO(CustomerMesurementDTO customerMesurementDTO) {
 //        try {

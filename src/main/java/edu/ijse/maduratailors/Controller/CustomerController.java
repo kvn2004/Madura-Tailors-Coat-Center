@@ -320,6 +320,8 @@ public class CustomerController implements Initializable {
             double thigh = Double.parseDouble(txtThigh.getText());
             double outseame = Double.parseDouble(txtOutseam.getText());
             double inseam = Double.parseDouble(txtInseam.getText());
+
+
             CustomerMesurementDTO customerMesurementDTO = new CustomerMesurementDTO(id, mId, name, address, telephone, neck, Shoulder, Chest, waist, hip, sleeveLength, shirtLength, thigh, outseame, inseam);
             boolean isUpdated = CustomerModel.upadte(customerMesurementDTO);
             if (isUpdated) {
