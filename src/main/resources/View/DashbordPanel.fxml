@@ -1,23 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="640.0" prefWidth="1046.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.maduratailors.Controller.DashBoardPanelController">
    <children>
-      <Pane layoutX="24.0" layoutY="14.0" prefHeight="190.0" prefWidth="330.0" style="-fx-background-color: #1e272e; -fx-background-radius: 10;" />
-      <Pane layoutX="364.0" layoutY="14.0" prefHeight="190.0" prefWidth="330.0" style="-fx-background-color: #1e272e; -fx-background-radius: 10;" />
-      <Pane layoutX="705.0" layoutY="14.0" prefHeight="190.0" prefWidth="330.0" style="-fx-background-color: #1e272e; -fx-background-radius: 10;" />
-      <TableView layoutX="14.0" layoutY="369.0" prefHeight="260.0" prefWidth="1026.0" style="-fx-border-color: #1e272e;">
+      <Pane layoutX="24.0" layoutY="14.0" prefHeight="190.0" prefWidth="330.0" style="-fx-background-color: #1e272e; -fx-background-radius: 10;">
+         <children>
+            <Text fill="#7bff00" layoutX="213.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL ORDERS">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4e4e4" height="122.0" layoutX="14.0" layoutY="34.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="0.0" width="118.0" />
+            <ImageView fitHeight="96.0" fitWidth="109.0" layoutX="25.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgAssets/icons/icons8-logistics-64.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblOrderCount" layoutX="200.0" layoutY="69.0" text="A" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Pane layoutX="364.0" layoutY="14.0" prefHeight="190.0" prefWidth="330.0" style="-fx-background-color: #1e272e; -fx-background-radius: 10;">
+         <children>
+            <Text fill="#7bff00" layoutX="179.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL CUSTOMERS" wrappingWidth="136.04998779296875">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4e4e4" height="122.0" layoutX="14.0" layoutY="34.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="0.0" width="118.0" />
+            <ImageView fitHeight="96.0" fitWidth="109.0" layoutX="25.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgAssets/icons/icons8-customers-50.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblCustomerCount" layoutX="191.0" layoutY="69.0" text="B" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Pane layoutX="705.0" layoutY="14.0" prefHeight="190.0" prefWidth="330.0" style="-fx-background-color: #1e272e; -fx-background-radius: 10;">
+         <children>
+            <Text fill="#7bff00" layoutX="96.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL CUSTOMERS" wrappingWidth="136.04998779296875">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="159.0" fitWidth="209.0" layoutX="61.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgAssets/icons/zUR.gif" />
+               </image>
+            </ImageView>
+         </children></Pane>
+      <TableView fx:id="tblOrders" layoutX="14.0" layoutY="369.0" prefHeight="260.0" prefWidth="1026.0" style="-fx-border-color: #1e272e;">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="col_order_id" prefWidth="103.19997787475586" text="order_id" />
+          <TableColumn fx:id="col_customer_id" prefWidth="111.99996948242188" text="customer_id" />
+            <TableColumn fx:id="col_order_type" prefWidth="115.20002746582031" text="order_type" />
+            <TableColumn fx:id="col_order_date" prefWidth="122.39996337890625" text="order_date" />
+            <TableColumn fx:id="col_order_DueDate" prefWidth="126.4000244140625" text="order_DueDate" />
+            <TableColumn fx:id="col_design" prefWidth="154.39990234375" text="design" />
+            <TableColumn fx:id="col_order_price" prefWidth="140.0001220703125" text="order_price" />
+            <TableColumn fx:id="col_order_quantity" prefWidth="160.7999267578125" text="order_quantity" />
         </columns>
       </TableView>
       <Text layoutX="65.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ORDER HISTORY">

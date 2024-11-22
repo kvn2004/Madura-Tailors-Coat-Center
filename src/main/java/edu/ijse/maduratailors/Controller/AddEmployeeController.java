@@ -4,7 +4,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import edu.ijse.maduratailors.DTO.EmplyeeDTO;
 import edu.ijse.maduratailors.DTO.TM.EmployeeTM;
+import edu.ijse.maduratailors.Enum.TextField;
 import edu.ijse.maduratailors.Model.EmployeeModel;
+import edu.ijse.maduratailors.util.Regex;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -129,36 +131,23 @@ public class AddEmployeeController implements Initializable {
             String bank = lblBank.getText();
             String accountNumber = lblAccountNumber.getText();
             String phone = lblTelephone.getText();
-
-            String fNamePattern = "^[A-Za-z ]+$";
-            String mNamePattern = "^[A-Za-z ]+$";
-            String lNamePattern = "^[A-Za-z ]+$";
-            String phonePattern = "^(\\d+)||((\\d+\\.)(\\d){2})$";
-            String dobPattern = "^\\d{4}-\\d{2}-\\d{2}$";
-            String bankPattern = "^[A-Za-z ]+$";
-            String accountNumberPattern = "^[0-9]+$";
-
-
-            boolean isValidFName = fName.matches(fNamePattern);
-            boolean isValidMName = mName.matches(mNamePattern);
-            boolean isValidLName = lName.matches(lNamePattern);
-
-
-            if (!isValidFName) {
-                lblFname.setStyle(lblFname.getStyle() + ";-fx-border-color: red;");
+            if (!isValid()) {
+                new Alert(Alert.AlertType.ERROR, "Please ensure all fields are correctly filled out.").show();
+                return;
             }
+            if (isValid()) {
 
-            EmplyeeDTO emplyeeDTO = new EmplyeeDTO(id, fName, mName, lName, dob, bank, accountNumber, phone);
-            boolean isSaved = EmployeeModel.AddEmployee(emplyeeDTO);
+                EmplyeeDTO emplyeeDTO = new EmplyeeDTO(id, fName, mName, lName, dob, bank, accountNumber, phone);
+                boolean isSaved = EmployeeModel.AddEmployee(emplyeeDTO);
 
 
-            if (isSaved) {
-                new Alert(Alert.AlertType.INFORMATION, "Employee saved...!").show();
-                refreshTblEmployee();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to save Employee...!").show();
+                if (isSaved) {
+                    new Alert(Alert.AlertType.INFORMATION, "Employee saved...!").show();
+                    refreshTblEmployee();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Fail to save Employee...!").show();
+                }
             }
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -205,20 +194,27 @@ public class AddEmployeeController implements Initializable {
             String accountNumber = lblAccountNumber.getText();
             String phone = lblTelephone.getText();
 
-            EmplyeeDTO emplyeeDTO = new EmplyeeDTO(id, fName, mName, lName, dob, bank, accountNumber, phone);
-            try {
-                boolean isUpdated = EmployeeModel.updateEmployee(emplyeeDTO);
-                if (isUpdated) {
-                    refreshTblEmployee();
-                    clear();
-                    new Alert(Alert.AlertType.INFORMATION, "Employee updated...!").show();
-                } else {
-                    try {
-                        new Alert(Alert.AlertType.ERROR, "Fail to update Employee...!").show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
 
+            try {
+                if (!isValid()) {
+                    new Alert(Alert.AlertType.ERROR, "Please ensure all fields are correctly filled out.").show();
+                    return;
+                }
+                if (isValid()) {
+                    EmplyeeDTO emplyeeDTO = new EmplyeeDTO(id, fName, mName, lName, dob, bank, accountNumber, phone);
+                    boolean isUpdated = EmployeeModel.updateEmployee(emplyeeDTO);
+                    if (isUpdated) {
+                        refreshTblEmployee();
+                        clear();
+                        new Alert(Alert.AlertType.INFORMATION, "Employee updated...!").show();
+                    } else {
+                        try {
+                            new Alert(Alert.AlertType.ERROR, "Fail to update Employee...!").show();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -258,5 +254,16 @@ public class AddEmployeeController implements Initializable {
         lblBank.setText("");
         lblDOB.setText("");
         lblTelephone.setText("");
+    }
+
+    boolean isValid() {
+        if (!Regex.setTextColor(TextField.NAME, lblFname)) return false;
+        if (!Regex.setTextColor(TextField.NAME, lblMName)) return false;
+        if (!Regex.setTextColor(TextField.NAME, lblLName)) return false;
+        if (!Regex.setTextColor(TextField.DATE, lblDOB)) return false;
+        if (!Regex.setTextColor(TextField.BANK, lblBank)) return false;
+        if (!Regex.setTextColor(TextField.CONTACT, lblAccountNumber)) return false;
+        if (!Regex.setTextColor(TextField.CONTACT, lblTelephone)) return false;
+        return true;
     }
 }

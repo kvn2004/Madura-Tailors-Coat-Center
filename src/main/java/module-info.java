@@ -5,6 +5,7 @@ module edu.ijse.maduratailors.maduratailors {
     requires static lombok;
     requires java.desktop;
     requires java.sql;
+    requires net.sf.jasperreports.core;
 
 
     opens edu.ijse.maduratailors.Controller to javafx.fxml;

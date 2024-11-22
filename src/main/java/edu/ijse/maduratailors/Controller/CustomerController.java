@@ -5,7 +5,9 @@ import com.jfoenix.controls.JFXTextField;
 import edu.ijse.maduratailors.DTO.CustomerDTO;
 import edu.ijse.maduratailors.DTO.CustomerMesurementDTO;
 import edu.ijse.maduratailors.DTO.TM.CustomerMesurementTM;
+import edu.ijse.maduratailors.Enum.TextField;
 import edu.ijse.maduratailors.Model.CustomerModel;
+import edu.ijse.maduratailors.util.Regex;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -252,29 +254,34 @@ public class CustomerController implements Initializable {
             neck = parseDoubleWithDefault(txtNeck.getText(), "neck");
             Shoulder = parseDoubleWithDefault(txtShoulder.getText(), "shoulder");
             Chest = parseDoubleWithDefault(txtChest.getText(), "chest");
-
+            ////////
             if (!txtWaist.getText().isEmpty()) {
                 waist = parseDoubleWithDefault(txtWaist.getText(), "waist");
             } else {
                 waist = parseDoubleWithDefault(txtWaist2.getText(), "waist2");
             }
+            ///////////////
             hip = parseDoubleWithDefault(txtHip.getText(), "hip");
             sleeveLength = parseDoubleWithDefault(txtSleeveLength.getText(), "sleeve length");
             shirtLength = parseDoubleWithDefault(txtShirtLength.getText(), "shirt length");
             thigh = parseDoubleWithDefault(txtThigh.getText(), "thigh");
             outseame = parseDoubleWithDefault(txtOutseam.getText(), "outseam");
             inseam = parseDoubleWithDefault(txtInseam.getText(), "inseam");
+            if (!isValidInput()) {
+                new Alert(Alert.AlertType.ERROR, "Please ensure all fields are correctly filled out.").show();
+                return;
+            }
+            if (isValidInput()) {
+                CustomerMesurementDTO customerMesurementDTO = new CustomerMesurementDTO(id, mId, name, address, telephone, neck, Shoulder, Chest, waist, hip, sleeveLength, shirtLength, thigh, outseame, inseam);
 
-
-            CustomerMesurementDTO customerMesurementDTO = new CustomerMesurementDTO(id, mId, name, address, telephone, neck, Shoulder, Chest, waist, hip, sleeveLength, shirtLength, thigh, outseame, inseam);
-
-            boolean isSaved = CustomerModel.saveCustomerMeasurement(customerMesurementDTO);
-            if (isSaved) {
-                refreshTblMeasurement();
-                clear();
-                new Alert(Alert.AlertType.INFORMATION, "Customer saved...!").show();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to save customer...!").show();
+                boolean isSaved = CustomerModel.saveCustomerMeasurement(customerMesurementDTO);
+                if (isSaved) {
+                    refreshTblMeasurement();
+                    clear();
+                    new Alert(Alert.AlertType.INFORMATION, "Customer saved...!").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Fail to save customer...!").show();
+                }
             }
         } catch (NumberFormatException e) {
             System.out.println("Invalid number format: " + e.getMessage());
@@ -321,15 +328,20 @@ public class CustomerController implements Initializable {
             double outseame = Double.parseDouble(txtOutseam.getText());
             double inseam = Double.parseDouble(txtInseam.getText());
 
-
-            CustomerMesurementDTO customerMesurementDTO = new CustomerMesurementDTO(id, mId, name, address, telephone, neck, Shoulder, Chest, waist, hip, sleeveLength, shirtLength, thigh, outseame, inseam);
-            boolean isUpdated = CustomerModel.upadte(customerMesurementDTO);
-            if (isUpdated) {
-                refreshTblMeasurement();
-                clear();
-                new Alert(Alert.AlertType.INFORMATION, "Customer update...!").show();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to update ...!").show();
+            if (!isValidInput()) {
+                new Alert(Alert.AlertType.ERROR, "Please ensure all fields are correctly filled out.").show();
+                return;
+            }
+            if (isValidInput()) {
+                CustomerMesurementDTO customerMesurementDTO = new CustomerMesurementDTO(id, mId, name, address, telephone, neck, Shoulder, Chest, waist, hip, sleeveLength, shirtLength, thigh, outseame, inseam);
+                boolean isUpdated = CustomerModel.upadte(customerMesurementDTO);
+                if (isUpdated) {
+                    refreshTblMeasurement();
+                    clear();
+                    new Alert(Alert.AlertType.INFORMATION, "Customer update...!").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Fail to update ...!").show();
+                }
             }
         }
     }
@@ -423,7 +435,7 @@ public class CustomerController implements Initializable {
     }
 
 
-  public void btnSelectOnAction(ActionEvent actionEvent) {
+    public void btnSelectOnAction(ActionEvent actionEvent) {
 //        try {
 //
 //            String idText = txtID.getText();
@@ -463,8 +475,26 @@ public class CustomerController implements Initializable {
 //            System.err.println("Invalid input: " + e.getMessage());
 //
 //        }
-   }
+    }
 
+    boolean isValidInput() {
+        if (!Regex.setTextColor(TextField.NAME, txtFname)) return false;
+        if (!Regex.setTextColor(TextField.ADDRESS, txtAddress)) return false;
+        if (!Regex.setTextColor(TextField.CONTACT, txtTelephone)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtNeck)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtNeck)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtChest)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtWaist)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtWaist2)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtShirtLength)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtSleeveLength)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtShoulder)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtHip)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtInseam)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtOutseam)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtThigh)) return false;
+        return true;
+    }
 
 }
 

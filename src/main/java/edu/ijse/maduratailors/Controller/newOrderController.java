@@ -1,12 +1,15 @@
 package edu.ijse.maduratailors.Controller;
 
 import com.jfoenix.controls.*;
+import edu.ijse.maduratailors.DB.DBConnection;
 import edu.ijse.maduratailors.DTO.CustomerMesurementDTO;
 import edu.ijse.maduratailors.DTO.OrderPaymentDTO;
 import edu.ijse.maduratailors.DTO.ProductDTO;
 import edu.ijse.maduratailors.Enum.Design;
+import edu.ijse.maduratailors.Enum.TextField;
 import edu.ijse.maduratailors.Model.CustomerModel;
 import edu.ijse.maduratailors.Model.NewOrderModel;
+import edu.ijse.maduratailors.util.Regex;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,9 +27,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -269,7 +278,12 @@ public class newOrderController implements Initializable {
     private JFXTextField txtWaist2;
 
     @FXML
-    void btnRecipt(ActionEvent event) {
+    void btnRecipt(ActionEvent event) throws JRException, SQLException, ClassNotFoundException {
+        JasperDesign jasperDesign = JRXmlLoader.load("/Reports/NewOrderReport.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
+        JasperViewer.viewReport(jasperPrint, false);
 
     }
 
@@ -369,13 +383,18 @@ public class newOrderController implements Initializable {
             double thigh = Double.parseDouble(txtThigh.getText());
             double outseame = Double.parseDouble(txtOutseam.getText());
             double inseam = Double.parseDouble(txtInseam.getText());
-            CustomerMesurementDTO customerMesurementDTO = new CustomerMesurementDTO(id, mId, name, address, telephone, neck, Shoulder, Chest, waist, hip, sleeveLength, shirtLength, thigh, outseame, inseam);
-            boolean isUpdated = NewOrderModel.upadte(customerMesurementDTO);
-            if (isUpdated) {
+            if (isValidInput()) {
+                CustomerMesurementDTO customerMesurementDTO = new CustomerMesurementDTO(id, mId, name, address, telephone, neck, Shoulder, Chest, waist, hip, sleeveLength, shirtLength, thigh, outseame, inseam);
+                boolean isUpdated = NewOrderModel.upadte(customerMesurementDTO);
+                if (isUpdated) {
 
-                new Alert(Alert.AlertType.INFORMATION, "Customer update...!").show();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to update ...!").show();
+                    new Alert(Alert.AlertType.INFORMATION, "Customer update...!").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Fail to update ...!").show();
+                }
+            }if (!isValidInput()) {
+                new Alert(Alert.AlertType.ERROR, "Please ensure all fields are correctly filled out.").show();
+                return;
             }
         }
     }
@@ -383,18 +402,19 @@ public class newOrderController implements Initializable {
     public void btnPay(ActionEvent actionEvent) {
         int cID = Integer.parseInt(cBCustomerID.getValue());
         String type;
+        int itemId;
         if (tglBtnPurchase.isSelected()) {
             type = "Purchase";
+            itemId = 0;
         } else {
             type = "Rent";
+            itemId = Integer.parseInt(cBItemID.getValue());
         }
         String orderDate = dpOrderDate.getValue().toString();
         String dueDate = dpDueDate.getValue().toString();
         String design = cBDesign.getValue().toString();
         double price = Double.parseDouble(txtPrice.getText());
         int qty = Integer.parseInt(txtQTY.getText());
-        int itemId = 0;
-        itemId = Integer.parseInt(cBItemID.getValue());
         String paymentMethod = "Cash";
         /////////////////////
         if (cbCash.isSelected()) {
@@ -449,29 +469,24 @@ public class newOrderController implements Initializable {
         int qty = Integer.parseInt(txtQTY.getText());
         txtTotal.setText(String.valueOf(tot * qty));
     }
-//    public void receiveCustomerMesurementDTO(CustomerMesurementDTO customerMesurementDTO) {
-//        try {
-//            System.out.println("-----------------------------------------");
-//            System.out.println("awaaaaaa  -" + customerMesurementDTO);
-//            System.out.println("-----------------------------------------");
-//            System.out.println(customerMesurementDTO.getCustomerId());
-//            String name = customerMesurementDTO.getName();
-//
-//            System.out.println(name);
-//            newTxt.setText(customerMesurementDTO.getName());
-//            lblOrderDate.setText(customerMesurementDTO.getName());
-//            if (name != null) {
-//
-//                System.out.println("Text set successfully.");  // Debug statement
-//            } else {
-//                System.err.println("txtCustomerName is null");  // Debug statement
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            System.out.println("ERROR " + e.getMessage());
-//        }
-//
-//
-//    }
+
+    boolean isValidInput() {
+        if (!Regex.setTextColor(TextField.NAME, txtCustomerName)) return false;
+        if (!Regex.setTextColor(TextField.ADDRESS, txtCustomerAddress)) return false;
+        if (!Regex.setTextColor(TextField.CONTACT, txtCustomerContact)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtNeck)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtNeck)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtChest)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtWaist)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtWaist2)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtShirtLength)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtSleeveLength)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtShoulder)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtHip)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtInseam)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtOutseam)) return false;
+        if (!Regex.setTextColor(TextField.MEASUREMENT, txtThigh)) return false;
+        return true;
+    }
+
 }
