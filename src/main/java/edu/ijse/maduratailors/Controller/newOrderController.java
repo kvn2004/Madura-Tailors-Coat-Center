@@ -7,8 +7,8 @@ import edu.ijse.maduratailors.DTO.OrderPaymentDTO;
 import edu.ijse.maduratailors.DTO.ProductDTO;
 import edu.ijse.maduratailors.Enum.Design;
 import edu.ijse.maduratailors.Enum.TextField;
-import edu.ijse.maduratailors.Model.CustomerModel;
-import edu.ijse.maduratailors.Model.NewOrderModel;
+import edu.ijse.maduratailors.dao.custom.NewOrderDAO;
+import edu.ijse.maduratailors.dao.custom.impl.NewOrderDAOImpl;
 import edu.ijse.maduratailors.util.Regex;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,16 +35,14 @@ import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class newOrderController implements Initializable {
 
-
+    NewOrderDAO newOrderDAO = new NewOrderDAOImpl();
     public JFXButton btnCal;
 
     @Override
@@ -315,7 +313,7 @@ public class newOrderController implements Initializable {
 
     void loadCustomerId() {
         try {
-            ArrayList<String> list = NewOrderModel.getID();
+            ArrayList<String> list = newOrderDAO.getID();
             ObservableList<String> objects = FXCollections.observableArrayList();
             objects.addAll(list);
             cBCustomerID.setItems(objects);
@@ -327,7 +325,7 @@ public class newOrderController implements Initializable {
 
     void loadItemId() {
         try {
-            ArrayList<String> list = NewOrderModel.getItemID();
+            ArrayList<String> list = newOrderDAO.getItemID();
             ObservableList<String> objects = FXCollections.observableArrayList();
             objects.addAll(list);
             cBItemID.setItems(objects);
@@ -340,7 +338,7 @@ public class newOrderController implements Initializable {
     public void imgSearchClicked(MouseEvent mouseEvent) {
         int id = Integer.parseInt(cBCustomerID.getValue());
         try {
-            ArrayList<CustomerMesurementDTO> Cm = NewOrderModel.getCustomerMeasurement(id);
+            ArrayList<CustomerMesurementDTO> Cm = newOrderDAO.getCustomerMeasurement(id);
             for (CustomerMesurementDTO cm : Cm) {
                 txtCustomerName.setText(cm.getName());
                 txtCustomerContact.setText(cm.getTelephone());
@@ -385,14 +383,15 @@ public class newOrderController implements Initializable {
             double inseam = Double.parseDouble(txtInseam.getText());
             if (isValidInput()) {
                 CustomerMesurementDTO customerMesurementDTO = new CustomerMesurementDTO(id, mId, name, address, telephone, neck, Shoulder, Chest, waist, hip, sleeveLength, shirtLength, thigh, outseame, inseam);
-                boolean isUpdated = NewOrderModel.upadte(customerMesurementDTO);
+                boolean isUpdated = newOrderDAO.update(customerMesurementDTO);
                 if (isUpdated) {
 
                     new Alert(Alert.AlertType.INFORMATION, "Customer update...!").show();
                 } else {
                     new Alert(Alert.AlertType.ERROR, "Fail to update ...!").show();
                 }
-            }if (!isValidInput()) {
+            }
+            if (!isValidInput()) {
                 new Alert(Alert.AlertType.ERROR, "Please ensure all fields are correctly filled out.").show();
                 return;
             }
@@ -437,7 +436,7 @@ public class newOrderController implements Initializable {
         double amount = Double.parseDouble(txtAdvance.getText());
         String paymentDate = orderDate;
         OrderPaymentDTO orderPaymentDTO = new OrderPaymentDTO(cID, type, orderDate, dueDate, design, price, qty, itemId, paymentMethod, paymentDate, amount, Status);
-        boolean isSuccesfull = NewOrderModel.pay(orderPaymentDTO);
+        boolean isSuccesfull = newOrderDAO.pay(orderPaymentDTO);
         if (isSuccesfull) {
             new Alert(Alert.AlertType.INFORMATION, "Order Placed...!").show();
         } else {
@@ -451,7 +450,7 @@ public class newOrderController implements Initializable {
         int id = Integer.parseInt(cBItemID.getValue());
         System.out.println(id);
         try {
-            ArrayList<ProductDTO> productDTOS = NewOrderModel.getItemDetails(id);
+            ArrayList<ProductDTO> productDTOS = newOrderDAO.getItemDetails(id);
             for (ProductDTO productDTO : productDTOS) {
                 txtItemPrice.setText(String.valueOf(productDTO.getPrice()));
                 txtItemType.setText(productDTO.getCatogory());

@@ -26,7 +26,16 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lblDate.setText(LocalDate.now().toString());
-
+        lblInterfaceName.setText(btnAddEmployee.getText());
+        imgInterfaceImage.setImage(imgDashboard.getImage());
+        ancinterfaces.getChildren().clear();
+        AnchorPane anchorPane = null;
+        try {
+            anchorPane = FXMLLoader.load(getClass().getResource("/View/DashbordPanel.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ancinterfaces.getChildren().add(anchorPane);
     }
 
     public JFXButton btnAddEmployee;

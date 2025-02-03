@@ -6,6 +6,7 @@ module edu.ijse.maduratailors.maduratailors {
     requires java.desktop;
     requires java.sql;
     requires net.sf.jasperreports.core;
+    requires xml.apis.ext;
 
 
     opens edu.ijse.maduratailors.Controller to javafx.fxml;

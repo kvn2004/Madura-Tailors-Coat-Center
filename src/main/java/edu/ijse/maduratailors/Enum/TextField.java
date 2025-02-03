@@ -1,0 +1,5 @@
+package edu.ijse.maduratailors.Enum;
+
+public enum TextField {
+    ID,NAME,EMAIL,PASSWORD,ADDRESS,CONTACT,DATE,BANK,QTY,PRICE,DESCRIPTION,AMOUNT,MEASUREMENT
+}

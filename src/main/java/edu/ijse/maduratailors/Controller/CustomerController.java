@@ -6,7 +6,10 @@ import edu.ijse.maduratailors.DTO.CustomerDTO;
 import edu.ijse.maduratailors.DTO.CustomerMesurementDTO;
 import edu.ijse.maduratailors.DTO.TM.CustomerMesurementTM;
 import edu.ijse.maduratailors.Enum.TextField;
-import edu.ijse.maduratailors.Model.CustomerModel;
+import edu.ijse.maduratailors.bo.BOFactory;
+import edu.ijse.maduratailors.bo.custom.CustomerBO;
+import edu.ijse.maduratailors.dao.custom.CustomerDAO;
+import edu.ijse.maduratailors.dao.custom.impl.CustomerDAOImpl;
 import edu.ijse.maduratailors.util.Regex;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.Setter;
+import org.w3c.dom.svg.SVGAnimatedRect;
 
 import java.io.File;
 import java.net.URL;
@@ -47,6 +51,7 @@ public class CustomerController implements Initializable {
     public Label lbl15;
     public JFXButton btnSelect;
 
+    CustomerDAO customerDAO = new CustomerDAOImpl();
 
     private void lableVisible() {
         if (txtFname.getText().isEmpty()) {
@@ -115,12 +120,12 @@ public class CustomerController implements Initializable {
 
     }
 
-    private void refreshTblMeasurement() {
+    private void refreshTblMeasurement() throws SQLException, ClassNotFoundException {
         loadTblMesurement();
     }
 
-    private void loadTblMesurement() {
-        ArrayList<CustomerMesurementDTO> allCustomerMeasurement = CustomerModel.getAllCustomerMeasurement();
+    private void loadTblMesurement() throws SQLException, ClassNotFoundException {
+        ArrayList<CustomerMesurementDTO> allCustomerMeasurement = customerDAO.getAll();
         ObservableList<CustomerMesurementTM> objects = FXCollections.observableArrayList();
 
         for (CustomerMesurementDTO customerMesurementDTO : allCustomerMeasurement) {
@@ -231,6 +236,7 @@ public class CustomerController implements Initializable {
     @FXML
     private JFXTextField txtWaist2;
 
+CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
 
     @FXML
     void btnADDOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
@@ -274,7 +280,7 @@ public class CustomerController implements Initializable {
             if (isValidInput()) {
                 CustomerMesurementDTO customerMesurementDTO = new CustomerMesurementDTO(id, mId, name, address, telephone, neck, Shoulder, Chest, waist, hip, sleeveLength, shirtLength, thigh, outseame, inseam);
 
-                boolean isSaved = CustomerModel.saveCustomerMeasurement(customerMesurementDTO);
+                boolean isSaved = customerBO.saveCustomerMesurement(customerMesurementDTO);
                 if (isSaved) {
                     refreshTblMeasurement();
                     clear();
@@ -293,9 +299,9 @@ public class CustomerController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
         Optional<ButtonType> optType = alert.showAndWait();
         if (optType.get() == ButtonType.YES) {
-            int id = Integer.parseInt(txtID.getText());
+            String id = txtID.getText();
 
-            boolean isDeleted = CustomerModel.delete(id);
+            boolean isDeleted = customerDAO.delete(id);
             if (isDeleted) {
                 refreshTblMeasurement();
                 clear();
@@ -334,7 +340,7 @@ public class CustomerController implements Initializable {
             }
             if (isValidInput()) {
                 CustomerMesurementDTO customerMesurementDTO = new CustomerMesurementDTO(id, mId, name, address, telephone, neck, Shoulder, Chest, waist, hip, sleeveLength, shirtLength, thigh, outseame, inseam);
-                boolean isUpdated = CustomerModel.upadte(customerMesurementDTO);
+                boolean isUpdated = customerDAO.update(customerMesurementDTO);
                 if (isUpdated) {
                     refreshTblMeasurement();
                     clear();
@@ -358,7 +364,7 @@ public class CustomerController implements Initializable {
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 
         // Set the file extension filters (optional)
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"), new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"), new FileChooser.ExtensionFilter("All Files", "*.*"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
 
         // Show the Open dialog and get the selected file
         Stage stage1 = new Stage();
@@ -406,7 +412,7 @@ public class CustomerController implements Initializable {
     public void onClickMesuremetTbl(MouseEvent mouseEvent) throws SQLException, ClassNotFoundException {
         CustomerMesurementTM selectedItem = tblCustomerMesurement.getSelectionModel().getSelectedItem();
         int customerId = selectedItem.getMeasurementId();
-        ArrayList<CustomerDTO> customerDTOS = CustomerModel.getDataFromCustomer(customerId);
+        ArrayList<CustomerDTO> customerDTOS = customerDAO.getDataFromCustomer(customerId);
         for (CustomerDTO customerDTO : customerDTOS) {
             txtAddress.setText(customerDTO.getAddress());
             txtTelephone.setText(customerDTO.getTelephone());

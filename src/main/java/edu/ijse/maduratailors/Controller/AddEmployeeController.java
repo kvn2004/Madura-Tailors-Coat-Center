@@ -5,21 +5,22 @@ import com.jfoenix.controls.JFXTextField;
 import edu.ijse.maduratailors.DTO.EmplyeeDTO;
 import edu.ijse.maduratailors.DTO.TM.EmployeeTM;
 import edu.ijse.maduratailors.Enum.TextField;
-import edu.ijse.maduratailors.Model.EmployeeModel;
+import edu.ijse.maduratailors.dao.custom.EmployeeDAO;
+import edu.ijse.maduratailors.dao.custom.impl.EmployeeDAOImpl;
 import edu.ijse.maduratailors.util.Regex;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -30,7 +31,7 @@ import java.util.ResourceBundle;
 public class AddEmployeeController implements Initializable {
     public TableView tblEmployee;
 
-
+    EmployeeDAO employeeDAO = new EmployeeDAOImpl();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -47,8 +48,8 @@ public class AddEmployeeController implements Initializable {
         }
     }
 
-    public void loadTblEmployee() {
-        ArrayList<EmplyeeDTO> emplyeeDTOS = EmployeeModel.getAllEmployee();
+    public void loadTblEmployee() throws SQLException, ClassNotFoundException {
+        ArrayList<EmplyeeDTO> emplyeeDTOS = employeeDAO.getAll();
         ObservableList<EmployeeTM> objects = FXCollections.observableArrayList();
 
         for (EmplyeeDTO emplyeeDTO : emplyeeDTOS) {
@@ -58,7 +59,7 @@ public class AddEmployeeController implements Initializable {
         tblEmployee.setItems(objects);
     }
 
-    public void refreshTblEmployee() {
+    public void refreshTblEmployee() throws SQLException, ClassNotFoundException {
         loadTblEmployee();
     }
 
@@ -138,7 +139,7 @@ public class AddEmployeeController implements Initializable {
             if (isValid()) {
 
                 EmplyeeDTO emplyeeDTO = new EmplyeeDTO(id, fName, mName, lName, dob, bank, accountNumber, phone);
-                boolean isSaved = EmployeeModel.AddEmployee(emplyeeDTO);
+                boolean isSaved = employeeDAO.save(emplyeeDTO);
 
 
                 if (isSaved) {
@@ -162,7 +163,7 @@ public class AddEmployeeController implements Initializable {
         if (optType.get() == ButtonType.YES) {
             try {
                 String employeeId = lblID.getText();
-                boolean isDeleted = EmployeeModel.deleteEmployee(employeeId);
+                boolean isDeleted = employeeDAO.delete(employeeId);
                 if (isDeleted) {
                     refreshTblEmployee();
                     clear();
@@ -202,7 +203,7 @@ public class AddEmployeeController implements Initializable {
                 }
                 if (isValid()) {
                     EmplyeeDTO emplyeeDTO = new EmplyeeDTO(id, fName, mName, lName, dob, bank, accountNumber, phone);
-                    boolean isUpdated = EmployeeModel.updateEmployee(emplyeeDTO);
+                    boolean isUpdated = employeeDAO.update(emplyeeDTO);
                     if (isUpdated) {
                         refreshTblEmployee();
                         clear();
@@ -228,6 +229,31 @@ public class AddEmployeeController implements Initializable {
 
     @FXML
     void btnUploadOnAction(ActionEvent event) {
+        // Create a FileChooser instance
+        FileChooser fileChooser = new FileChooser();
+
+        // Set the title of the FileChooser dialog
+        fileChooser.setTitle("Open Resource File");
+
+        // Set the initial directory (optional)
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+
+        // Set the file extension filters (optional)
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+
+        // Show the Open dialog and get the selected file
+        Stage stage1 = new Stage();
+
+        stage1 = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        File selectedFile = fileChooser.showOpenDialog(stage1);
+
+        // Handle the selected file (if any)
+        if (selectedFile != null) {
+            System.out.println("File selected: " + selectedFile.getAbsolutePath());
+            // You can add your file handling code here
+        } else {
+            System.out.println("File selection cancelled.");
+        }
 
     }
 

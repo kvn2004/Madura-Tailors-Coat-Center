@@ -53,7 +53,7 @@
          </children></Pane>
       <Pane layoutX="705.0" layoutY="14.0" prefHeight="190.0" prefWidth="330.0" style="-fx-background-color: #1e272e; -fx-background-radius: 10;">
          <children>
-            <Text fill="#7bff00" layoutX="96.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL CUSTOMERS" wrappingWidth="136.04998779296875">
+            <Text fill="#7bff00" layoutX="71.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CUSTOMER RETURN RATE" wrappingWidth="188.04998779296875">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

@@ -1,8 +1,9 @@
 package edu.ijse.maduratailors.Controller;
 
 import edu.ijse.maduratailors.DTO.TM.OrdersTM;
-import edu.ijse.maduratailors.Model.DashboardPanelModel;
-import edu.ijse.maduratailors.util.CrudUtil;
+import edu.ijse.maduratailors.dao.custom.DashboardPanelDAO;
+import edu.ijse.maduratailors.dao.custom.impl.DashboardPanelDAOImpl;
+import edu.ijse.maduratailors.dao.CrudUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,6 +25,8 @@ public class DashBoardPanelController implements Initializable {
     @FXML
     private Label lblCustomerCount;
 
+    DashboardPanelDAO dashboardPanelDAO = new DashboardPanelDAOImpl();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         col_order_id.setCellValueFactory(new PropertyValueFactory<>("order_id"));
@@ -36,7 +39,7 @@ public class DashBoardPanelController implements Initializable {
         col_order_quantity.setCellValueFactory(new PropertyValueFactory<>("order_quantity"));
 
         try {
-            ArrayList<OrdersTM>list= DashboardPanelModel.getAllOrders();
+            ArrayList<OrdersTM>list= dashboardPanelDAO.getAll();
             ObservableList<OrdersTM>ordersTMS = FXCollections.observableArrayList();
             for(OrdersTM ordersTM:list){
                 ordersTMS.add(ordersTM);

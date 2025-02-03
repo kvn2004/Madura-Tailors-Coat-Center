@@ -82,7 +82,7 @@
                   </LinearGradient>
                </ripplerFill>
             </JFXButton>
-            <Text layoutX="91.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forget Password?">
+            <Text disable="true" layoutX="91.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forget Password?">
                <font>
                   <Font size="11.0" />
                </font>

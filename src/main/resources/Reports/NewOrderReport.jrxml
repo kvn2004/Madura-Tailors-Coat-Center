@@ -1,0 +1,190 @@
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="NewOrderReport" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c0743a74-12f2-493a-91e9-4a15ab8fbb7a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MaduraTailorsDBConnection"/>
+	<query language="SQL"><![CDATA[SELECT
+    o.OrderID,
+    o.CustomerID,
+    o.OrderType,
+    o.OrderDate,
+    o.DueDate,
+    o.Design,
+    o.Price,
+    o.Quantity,
+    p.payment_id,
+    p.payment_date,
+    p.amount,
+    p.payment_method,
+    p.status
+FROM
+    orders o
+JOIN
+    payments p ON o.OrderID = p.order_id
+]]></query>
+	<field name="OrderID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="OrderID"/>
+		<property name="com.jaspersoft.studio.field.label" value="OrderID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="CustomerID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="CustomerID"/>
+		<property name="com.jaspersoft.studio.field.label" value="CustomerID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="OrderType" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="OrderType"/>
+		<property name="com.jaspersoft.studio.field.label" value="OrderType"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="OrderDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="OrderDate"/>
+		<property name="com.jaspersoft.studio.field.label" value="OrderDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="DueDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="DueDate"/>
+		<property name="com.jaspersoft.studio.field.label" value="DueDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="Design" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Design"/>
+		<property name="com.jaspersoft.studio.field.label" value="Design"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="Price" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Price"/>
+		<property name="com.jaspersoft.studio.field.label" value="Price"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="Quantity" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Quantity"/>
+		<property name="com.jaspersoft.studio.field.label" value="Quantity"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="payment_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="payment_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="payment_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="payment_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="payment_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="payment_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="amount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="amount"/>
+		<property name="com.jaspersoft.studio.field.label" value="amount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="payment_method" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="payment_method"/>
+		<property name="com.jaspersoft.studio.field.label" value="payment_method"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="status"/>
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="136" splitType="Stretch">
+		<element kind="staticText" uuid="43eb187c-a644-4b13-b3cf-75c319c95d93" x="2" y="0" width="550" height="40" forecolor="#3215ED" fontSize="26.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[MADURA TAILORS & COAT CENTER]]></text>
+		</element>
+		<element kind="staticText" uuid="444b80eb-1863-4c55-960d-b4f22a885369" x="220" y="50" width="120" height="30" fontSize="20.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[BADURALIYA]]></text>
+		</element>
+		<element kind="rectangle" uuid="0eca003b-250b-4dd5-a480-4e2fbd1244bf" x="2" y="80" width="553" height="10" backcolor="#030303"/>
+		<element kind="staticText" uuid="2281108b-a8d6-42a2-b66f-7b63d16f20b6" x="230" y="100" width="100" height="30" fontSize="18.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[INVOICE]]></text>
+		</element>
+		<element kind="staticText" uuid="9e31fded-efc4-40d7-b569-1ca7416c68df" x="340" y="100" width="50" height="30" fontSize="16.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Date :]]></text>
+		</element>
+		<element kind="textField" uuid="23104f18-8242-4112-b725-ca9d630537b9" x="400" y="100" width="100" height="30" fontSize="11.0" pattern="MMMMM dd, yyyy" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+	</title>
+	<pageHeader height="437" splitType="Stretch">
+		<element kind="rectangle" uuid="eaa9481e-2cdb-4269-8314-62a50fbaf8fd" x="0" y="0" width="550" height="371" backcolor="#636E72"/>
+		<element kind="staticText" uuid="b39d10fc-c880-4a02-890b-8111a3de14fe" x="5" y="25" width="128" height="30" fontSize="16.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Customer ID :]]></text>
+		</element>
+		<element kind="staticText" uuid="d5af3a2b-c219-4ad8-a7f0-bfb118743cf5" x="5" y="65" width="128" height="30" fontSize="16.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Order ID :]]></text>
+		</element>
+		<element kind="staticText" uuid="2d2d90bb-8e2e-4aa1-9532-8e966797a933" x="5" y="105" width="128" height="30" fontSize="16.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Order Type :]]></text>
+		</element>
+		<element kind="staticText" uuid="02fa06c6-a8c1-4966-9627-fddd2719b265" x="3" y="142" width="128" height="30" fontSize="16.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Design :]]></text>
+		</element>
+		<element kind="staticText" uuid="9394eee9-4467-48d3-8a98-2d397e5765b7" x="280" y="105" width="128" height="30" fontSize="16.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Price :]]></text>
+		</element>
+		<element kind="staticText" uuid="e04efaf9-db92-4d40-a51f-e9d4663baa9e" x="280" y="65" width="128" height="30" fontSize="16.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Due Date :]]></text>
+		</element>
+		<element kind="staticText" uuid="419bc7ed-67e9-43af-a06c-6d122e478dc1" x="280" y="25" width="128" height="30" fontSize="16.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Order Date :]]></text>
+		</element>
+		<element kind="staticText" uuid="1eea894a-9f85-4b76-bfff-57b7877dc701" x="280" y="142" width="128" height="30" fontSize="16.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[QTY:]]></text>
+		</element>
+		<element kind="textField" uuid="ab0e3f0f-d639-4815-a768-fb8b21d2d0b1" x="133" y="25" width="117" height="30" fontSize="14.0" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[$F{CustomerID}]]></expression>
+		</element>
+		<element kind="textField" uuid="989d89ea-be8a-41e6-94ca-8e8805ef174b" x="133" y="60" width="100" height="30" fontSize="14.0" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[$F{OrderID}]]></expression>
+		</element>
+		<element kind="textField" uuid="ffade196-a710-4d20-aaee-aa81f2292428" x="133" y="105" width="100" height="30" fontSize="14.0" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[$F{OrderType}]]></expression>
+		</element>
+		<element kind="textField" uuid="bfa36cf4-c09f-4a7e-89bc-43e7113751c4" x="131" y="140" width="100" height="30" fontSize="14.0" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[$F{Design}]]></expression>
+		</element>
+		<element kind="textField" uuid="3d4ca8fe-475e-4710-bb3d-a510b9e898bb" x="410" y="25" width="100" height="30" fontSize="14.0" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[$F{OrderDate}]]></expression>
+		</element>
+		<element kind="textField" uuid="d2e9e28c-36fe-4add-adf2-7d284d36a650" x="410" y="65" width="100" height="30" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$F{DueDate}]]></expression>
+		</element>
+		<element kind="textField" uuid="36a96868-6646-4957-93eb-236637fb5ac1" x="410" y="105" width="100" height="30" fontSize="14.0" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[$F{Price}]]></expression>
+		</element>
+		<element kind="textField" uuid="c5dedaff-0777-4bb2-8a31-055f88cbfcce" x="410" y="140" width="100" height="30" fontSize="14.0" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[$F{Quantity}]]></expression>
+		</element>
+		<element kind="staticText" uuid="3e0da518-f299-430a-bc7a-d4f640e3e4c8" x="3" y="203" width="97" height="30" fontSize="16.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Payment ID]]></text>
+		</element>
+		<element kind="staticText" uuid="5b199867-e61b-433a-8edf-726c214e19e0" x="117" y="203" width="133" height="30" fontSize="16.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Payment Method]]></text>
+		</element>
+		<element kind="staticText" uuid="73d15706-7e36-4bf9-a2ea-75d518d64f46" x="267" y="203" width="133" height="30" fontSize="16.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Payment Status]]></text>
+		</element>
+		<element kind="staticText" uuid="edc1fa2e-5f7d-4907-8302-969abc85c614" x="440" y="203" width="83" height="30" fontSize="16.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Price]]></text>
+		</element>
+		<element kind="textField" uuid="91bf9d1d-d6ba-482b-a74c-0bffd3d554e2" x="5" y="240" width="100" height="30" fontSize="13.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$F{payment_id}]]></expression>
+		</element>
+		<element kind="textField" uuid="6c769ef8-6e71-4178-b52b-42f96ebd407d" x="117" y="234" width="133" height="40" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$F{payment_method}]]></expression>
+		</element>
+		<element kind="textField" uuid="5a0d28f8-4e0c-4441-b150-72e42d65c7a0" x="267" y="240" width="133" height="30" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$F{status}]]></expression>
+		</element>
+		<element kind="textField" uuid="42f77007-3fc5-4058-8e4d-01d6c385b9e0" x="420" y="240" width="103" height="30" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$F{amount}]]></expression>
+		</element>
+	</pageHeader>
+	<columnHeader height="130" splitType="Stretch"/>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch"/>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>
